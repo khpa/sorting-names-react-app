@@ -1,4 +1,4 @@
-.App {
+.App, h1 {
   text-align: center;
 }
 
@@ -22,6 +22,9 @@
   font-size: large;
 }
 
+.blue {
+  color: blue;
+}
 .App-main {
   margin: auto;
   margin-top: 30px;
@@ -43,6 +46,15 @@
   border: 2px solid #606C70;
   border-radius: 6px;
   padding: 10px;
+}
+.copyright {
+  text-align: right;
+  font-size: 75%;
+  margin-bottom: -10px;
+ 
+}
+.List-container button {
+  margin-left: 5px;
 }
 
 @keyframes App-logo-spin {
