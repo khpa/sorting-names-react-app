@@ -17,10 +17,18 @@ class NameLabel extends React.Component {
     lista.sort();
 
     let removeFromAry = (i) => {
-      console.log(i + 1);
-      var filteredAry = lista.filter(e => e !== this.state.names[i])
-
-      this.setState({
+      console.log(i);
+      var position = lista.indexOf (i);
+      console.log (position);
+      //var filteredAry = lista.filter(e => e !== this.state.names[i])
+let filteredAry = lista;
+//const filteredAry = new Set(lista);
+//filteredAry.delete(i);
+console.log (filteredAry);
+filteredAry.splice(position,1);
+console.log ('dupa splice ' + filteredAry);
+//console.log (typeof filteredAry);  
+this.setState({
         names: filteredAry,
         label: this.state.label - 1
       })
