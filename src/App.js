@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import NameLabel from './components/NameLabel';
+import NameLabel from './components/NameLabel/NameLabelComponent';
 
 class App extends Component {
   render() {
