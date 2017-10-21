@@ -1,0 +1,22 @@
+[
+  {
+    "Name": "Cristi",
+    "isLast": false
+  },
+  {
+    "Name": "Paul",
+    "isLast": false
+  },
+  {
+    "Name": "George",
+    "isLast": false
+  },
+  {
+    "Name": "Alina",
+    "isLast": true
+  },
+  {
+    "Name": "Marius",
+    "isLast": false
+  }
+]
