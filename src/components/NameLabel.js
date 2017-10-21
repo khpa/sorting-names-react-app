@@ -31,7 +31,7 @@ class NameLabel extends React.Component {
       })
     }
 
-    console.log(lista);
+    console.log("lista este asta: ",lista);
 
     lista.sort(function (a, b) { return (a.nume > b.nume) ? 1 : ((b.nume > a.nume) ? -1 : 0); });
 
@@ -49,6 +49,7 @@ class NameLabel extends React.Component {
         names: res,
         label: res.length
       })
+  
     });
   }
 
