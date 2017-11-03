@@ -9,8 +9,8 @@ class NameLabel extends Component {
     this.state = {
       names: []
     }
-  }
 
+  }
   componentWillMount() {
     this.loadUsersFromApi();
   }
@@ -19,46 +19,71 @@ class NameLabel extends Component {
     namesList.sort((a, b) => a.name < b.name ? -1 : a.name > b.name ? 1 : 0); //sort 
 
     let removeFromAry = (i) => {
+
       let filteredAry = namesList;
       let index = filteredAry.findIndex(x => x.name === i);
-      console.log('index of ' + i + ' is:' + index);
+      // console.log('index of ' + i + ' is:' + index);
+
       filteredAry.splice(index, 1);
+      console.log('to delete from api:',i);
+      api.deleteUsers(i); //delete from api
       this.setState({
         names: filteredAry
       })
     }
 
     return (
-    namesList.map((item, i) => {
-      return (
-        <RemoveButton key={ i } item={ item.name } actionFct={ removeFromAry } className={ (item.isLast === true) ? "blue" : "" } />
+      namesList.map((item, i) => {
+        return (
+          <RemoveButton key={i} item={item.name} actionFct={removeFromAry} className={(item.isLast === true) ? "blue" : ""} />
         );
-    }))
+      }))
   }
 
   loadUsersFromApi = () => {
     api.getUsers().then((res) => {
-      //TODO Creaza o list de nume 
-      
+
+      let apiNames = res.map((n, i) => {
+        return { id: i, name: n.name, username: n.username }
+      });
+
       this.setState({
-        names: res
+        names: apiNames
+      })
+    });
+  }
+
+  sendUsersToApi = (namex) => {
+    api.sendUsers(namex).then((response) => {
+      //let respId = response;
+      //respons from api with id:11
+
+      let returnedObj = { name: response.firstParam, respID: response.id }
+      console.log('returnedOBJ',returnedObj)
+
+      this.setState(prevState => {
+        let { names } = prevState;
+        names.forEach(name => name.isLast = false);
+
+        names.push({
+          name: this.state.value,
+          isLast: true,
+          apiID: returnedObj.respID
+
+        });
+
+        console.log('main array',names);   
+
+        return {
+          names: names
+        };
       })
     });
   }
 
   addName = () => {
-    this.setState(prevState => {
-      let {names} = prevState;
-      names.forEach(name => name.isLast = false);
-      names.push({
-        name: this.state.value,
-        isLast: true
-      });
-
-      return {
-        names: names
-      };
-    })
+    this.sendUsersToApi(this.state.value); //pass name to api
+    // setState() from line 60 was here  
   };
 
   onNameInputChange = (event) => {
@@ -72,28 +97,29 @@ class NameLabel extends Component {
   })
 
   render() {
+
     const namesListTags = this.createNameTags(this.state.names);
 
     return (
       <div>
         <h1>Just a list of names... sorted... and more :)</h1>
         <div className="List-container">
-          { namesListTags }
+          {namesListTags}
         </div>
         <p>Total names:
-          { this.state.names.length }
+          {this.state.names.length}
         </p>
         <p>Last Name sent:
-          { this.state.value }
+          {this.state.value}
         </p>
-        <input type="text" value={ this.state.value } onChange={ this.onNameInputChange } />
+        {/*TODO input as component */} <input type="text" value={this.state.value} onChange={this.onNameInputChange} />
         <div className="buttons-container">
-          <button onClick={ () => this.loadUsersFromApi() }>LoadFromApi</button>
-          <button onClick={ this.addName }>Add Names</button>
-          <button onClick={ this.clearNames }>ClearList</button>
+          <button onClick={() => this.loadUsersFromApi()}>LoadFromApi</button>
+          <button onClick={this.addName}>Add Names</button>
+          <button onClick={this.clearNames}>ClearList</button>
         </div>
         <p className="copyright">JSON: <a href="https://api.myjson.com/bins/18gptr" target="_blank" rel="noopener noreferrer">
-              https://api.myjson.com/bins/18gptr</a></p>
+          https://api.myjson.com/bins/18gptr</a></p>
       </div>)
   }
 }
