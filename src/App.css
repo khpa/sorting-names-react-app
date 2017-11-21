@@ -1,10 +1,5 @@
-.App, h1 {
+.App, h1, h2 {
   text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
 }
 
 .App-header {
@@ -28,24 +23,29 @@
 .App-main {
   margin: auto;
   margin-top: 30px;
-  width: 50%;
-  border: 3px solid #0DBDF3;
+  /* width: 50%; */
+  /* border: 1px solid #606C70; */
   border-radius: 6px;
   padding: 10px;
 }
 .List-container {
   margin: auto;
-  width: 50%;
-  border: 2px solid #0DBDF3;
+  /* width: 50%; */
+  width: 290px;
+  border: 1px solid #606C70;
   border-radius: 6px;
   padding: 5px;
 }
 
+.List-container div {
+  margin-bottom: 2px;
+}
 .List-container p {
   text-align: center;
   border: 1px solid #606C70;
   border-radius: 10px;
-  margin:6px;
+  margin:auto;
+  width: 250px;
   padding: 8px;
 }
 .copyright {
@@ -55,14 +55,23 @@
  
 }
 .List-container button {
-  margin-left: 5px;
+  margin-left: 2px;
 }
 
-
+.buttons-container {
+  margin: auto;
+  text-align: center;
+}
 .buttons-container button {
-  margin-right: 5px;
+  margin-right: 10px;
 }
-
+.input-field {
+  margin: auto;
+  text-align: center;
+}
+.input-field input {
+  margin-bottom: 10px;
+}
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }

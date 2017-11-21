@@ -102,24 +102,30 @@ class NameLabel extends Component {
 
     return (
       <div>
-        <h1>Just a list of names... sorted... and more :)</h1>
+        <h1>NameLabels</h1>
+        {/* <h2>Just a list of names... sorted... and more :)</h2> */}
         <div className="List-container">
           {namesListTags}
         </div>
+        
+        {/* <p>Last Name sent:
+          {this.state.value}
+        </p> */}
+        {/*TODO input as component */} 
+        <div className="input-field">
         <p>Total names:
           {this.state.names.length}
-        </p>
-        <p>Last Name sent:
-          {this.state.value}
-        </p>
-        {/*TODO input as component */} <input type="text" value={this.state.value} onChange={this.onNameInputChange} />
+        </p>  
+        <p>Add a new name:</p>
+        <input type="text" value={this.state.value} onChange={this.onNameInputChange} />
+        </div>
         <div className="buttons-container">
           <button onClick={() => this.loadUsersFromApi()}>LoadFromApi</button>
           <button onClick={this.addName}>Add Names</button>
           <button onClick={this.clearNames}>ClearList</button>
         </div>
-        <p className="copyright">JSON: <a href="https://api.myjson.com/bins/18gptr" target="_blank" rel="noopener noreferrer">
-          https://api.myjson.com/bins/18gptr</a></p>
+        <p className="copyright">JSON: <a href="https://jsonplaceholder.typicode.com/users" target="_blank" rel="noopener noreferrer">
+        https://jsonplaceholder.typicode.com/users</a></p>
       </div>)
   }
 }
